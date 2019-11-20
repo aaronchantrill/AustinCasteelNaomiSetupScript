@@ -719,6 +719,7 @@ function virtualenv_setup(){
     fi
     # start the naomi setup process
     echo "#!/bin/bash" > Naomi
+    echo "export VIRTUALENVWRAPPER_PYTHON=$(which python3)" >> Naomi
     echo "export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv" >> Naomi
     echo "source ~/.local/bin/virtualenvwrapper.sh" >> Naomi
     echo "workon Naomi" >> Naomi
@@ -740,7 +741,8 @@ function virtualenv_setup(){
     echo -e "dependencies, all you have to type is \e[1;35m'workon Naomi'\e[1;36m"
     echo " "
     echo "Otherwise, you will need to enter:"
-    echo -e "\e[1;35m'VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv'\e[1;36m"
+    echo -e "\e[1;35m'export VIRTUALENV_PYTHON=$(which python3)'\e[1;36m"
+    echo -e "\e[1;35m'export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv'\e[1;36m"
     echo -e "\e[1;35m'source ~/.local/bin/virtualenvwrapper.sh'\e[1;36m"
     echo -e "before you will be able activate the Naomi environment with \e[1;35m'workon Naomi'\e[1;36m"
     echo " "
@@ -760,7 +762,7 @@ function virtualenv_setup(){
             echo '#####################################################################' >> ~/.bashrc
             echo '# Initialize virtualenvwrapper to auto start on any terminal or ssh #' >> ~/.bashrc
             echo '#####################################################################' >> ~/.bashrc
-            echo 'VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv source ~/.local/bin/virtualenvwrapper.sh' >> ~/.bashrc
+            echo 'VIRTUALENVWRAPPER_PYTHON=$(which python3) VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv source ~/.local/bin/virtualenvwrapper.sh' >> ~/.bashrc
             break
             ;;
         [Nn])
